@@ -7,7 +7,7 @@ const filterOption = document.querySelector(".filter-todo");
 // Event Listeners
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
-filterOption = addEventListener('click', filterTodo);
+filterOption.addEventListener('click', filterTodo);
 
 // Functions
 
@@ -81,6 +81,24 @@ function filterTodo(e) {
         } else {
           todo.style.display = "none";
         }
+        break;
+        case "uncompleted":
+          if(!todo.classList.contains('completed')){
+            todo.style.display = "flex";
+          } else {
+            todo.style.display = "none";
+          }
+          break;
     }
   })
+}
+
+function saveLocalTodos(todo) {
+  // Check if its already in local storage
+  let todos;
+  if(localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
 }
