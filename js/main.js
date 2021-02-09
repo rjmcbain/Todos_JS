@@ -99,14 +99,25 @@ function filterTodo(e) {
 }
 
 function saveLocalTodos(todo) {
-  // Check if its already in local storage
   let todos;
-  if (localStorage.getItem('todos') === null) {
+  if (localStorage.getItem("todos") === null) {
     todos = [];
   } else {
-    todos.push(todo);
-    todos = JSON.parse(localStorage.getItem('todos'));
+    todos = JSON.parse(localStorage.getItem("todos"));
   }
+  todos.push(todo);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+function removeLocalTodos(todo) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  const todoIndex = todo.children[0].innerText;
+  todos.splice(todos.indexOf(todoIndex), 1);
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 function getTodos() {
@@ -146,6 +157,3 @@ function getTodos() {
 
 }
 
-function removeLocalTodos(todo) {
-
-}
